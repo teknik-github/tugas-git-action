@@ -37,6 +37,7 @@ jobs:
     - name: Deploy to Kubernetes via SSH and Git clone
       run: |
         ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-144-235-199.compute-1.amazonaws.com "
+        sudo kubectl delete -k deployment/.
          if [ -d \"tugas-git-action\" ]; then 
             echo 'Folder exists. Deleting...'; 
             rm -rf tugas-git-action; 
