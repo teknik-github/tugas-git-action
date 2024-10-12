@@ -7,4 +7,4 @@ resources:
 - 04-traefik-services.yaml
 - 05-traefik.yaml
 - nodejs-service/ingress.yaml
-- nodejs-service/nodejs-deployment.yaml
+- nodejs-service/nodejs-deploymen.yaml
