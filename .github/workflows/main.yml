@@ -21,8 +21,8 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t your-docker-image:latest .
-        docker push your-docker-image:latest
+        docker build -t teknikhub/nodejs:latest .
+        docker push teknikhub/nodejs:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -34,8 +34,14 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Deploy to Kubernetes via SSH
+    - name: Deploy to Kubernetes via SSH and Git clone
       run: |
-        ssh -o StrictHostKeyChecking=no user@remote-server "
-          kubectl apply -k .
+        ssh -o StrictHostKeyChecking=no user@master-node "
+         if [ -d \"tugas-git-action\" ]; then 
+            echo 'Folder exists. Deleting...'; 
+            rm -rf tugas-git-action; 
+        fi && \
+        git clone https://github.com/teknik-github/tugas-git-action.git && \
+        cd tugas-git-action/deployment && \
+        kubectl apply -k .
         "
