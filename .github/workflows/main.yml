@@ -43,6 +43,5 @@ jobs:
         fi && \
         git clone https://github.com/teknik-github/tugas-git-action.git && \
         cd tugas-git-action/deployment && \
-        sudo su && \
-        kubectl apply -k .
+        sudo kubectl apply -k .
         "
