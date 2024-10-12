@@ -36,12 +36,13 @@ jobs:
 
     - name: Deploy to Kubernetes via SSH and Git clone
       run: |
-        ssh -o StrictHostKeyChecking=no user@master-node "
+        ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-144-235-199.compute-1.amazonaws.com "
          if [ -d \"tugas-git-action\" ]; then 
             echo 'Folder exists. Deleting...'; 
             rm -rf tugas-git-action; 
         fi && \
         git clone https://github.com/teknik-github/tugas-git-action.git && \
         cd tugas-git-action/deployment && \
+        sudo su && \
         kubectl apply -k .
         "
