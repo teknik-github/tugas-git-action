@@ -10,7 +10,7 @@ metadata:
 spec:
   rules:
   ##harus di isi nama domain
-    - host: localhost.local
+    - host: tugasbelajar.duckdns.org
       http:
         paths:
           - path: /
