@@ -40,10 +40,10 @@ jobs:
         run: |
           echo "Waiting for VPN connection to be fully established..."
           sleep 30  # Menunggu selama 30 detik sebelum melanjutkan ke deployment
-          - name: Ping IP to check connection
-          run: |
-            echo "Pinging IP for 5 seconds..."
-            ping -c 5 "${{ secrets.VPN_IP }}"
+      - name: Ping IP to check connection
+        run: |
+          echo "Pinging IP for 5 seconds..."
+          ping -c 5 "${{ secrets.VPN_IP }}"
   
 
   deploy:
