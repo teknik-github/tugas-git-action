@@ -10,7 +10,7 @@ metadata:
 spec:
   rules:
   ##harus di isi nama domain
-    - host: tugasbelajar.duckdns.org
+    - host: web.teknikhub.uk.to
       http:
         paths:
           - path: /
