@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-docker:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,31 +24,31 @@ jobs:
         docker build -t teknikhub/nodejs:latest .
         docker push teknikhub/nodejs:latest
 
-  vpn:
-    name: vpn install 
-    runs-on: ubuntu-latest
-    steps:
-      - name: vpn
-        uses: actions/checkout@v4
-      - name: install vpn
-        run: |
-          sudo apt-get update
-          sudo curl -s https://install.zerotier.com | sudo bash
-          sudo systemctl start zerotier-one
-          sudo zerotier-cli join "${{ secrets.VPN_NETWORK }}"
-      - name: Wait for VPN to establish connection
-        run: |
-          echo "Waiting for VPN connection to be fully established..."
-          sleep 30  # Menunggu selama 30 detik sebelum melanjutkan ke deployment
-      - name: Ping IP to check connection
-        run: |
-          echo "Pinging IP for 5 seconds..."
-          ping -c 5 "${{ secrets.VPN_IP }}"
+  # vpn:
+  #   name: vpn install 
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: vpn
+  #       uses: actions/checkout@v4
+  #     - name: install vpn
+  #       run: |
+  #         sudo apt-get update
+  #         sudo curl -s https://install.zerotier.com | sudo bash
+  #         sudo systemctl start zerotier-one
+  #         sudo zerotier-cli join "${{ secrets.VPN_NETWORK }}"
+  #     - name: Wait for VPN to establish connection
+  #       run: |
+  #         echo "Waiting for VPN connection to be fully established..."
+  #         sleep 30  # Menunggu selama 30 detik sebelum melanjutkan ke deployment
+  #     - name: Ping IP to check connection
+  #       run: |
+  #         echo "Pinging IP for 5 seconds..."
+  #         ping -c 30 "${{ secrets.VPN_IP }}"
   
 
   deploy:
     runs-on: ubuntu-latest
-    needs: vpn
+    needs: build-docker
 
     steps:
     - name: Add SSH key
@@ -58,7 +58,7 @@ jobs:
 
     - name: Deploy to Kubernetes via SSH and Git clone
       run: |
-        ssh -o StrictHostKeyChecking=no arch@"${{ secrets.VPN_IP }}" "
+        ssh -o StrictHostKeyChecking=no ubuntu@ec2-34-234-234-179.compute-1.amazonaws.com "
          if [ -d \"tugas-git-action\" ]; then 
             echo 'Folder exists. Deleting...'; 
             rm -rf tugas-git-action; 
