@@ -10,7 +10,7 @@ metadata:
 spec:
   rules:
   ##harus di isi nama domain
-    - host: web.teknikhub.uk.to
+    - host: localhost.local
       http:
         paths:
           - path: /
