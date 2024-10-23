@@ -64,7 +64,12 @@ jobs:
             rm -rf tugas-git-action; 
         fi && \
         git clone https://github.com/teknik-github/tugas-git-action.git && \
+        if kubectl get -k tugas-git-action/deployment/; then
         kubectl delete -k tugas-git-action/deployment/. && \
+        echo "Resources deleted, applying new deployment..."
+        else
+        echo "Resources not found, applying new deployment..."
+        fi
         cd tugas-git-action/deployment && \
         kubectl apply -k .
         "
