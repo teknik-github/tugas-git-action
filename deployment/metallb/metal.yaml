@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: public-ips
+      protocol: layer2
+      addresses:
+      - 18.233.120.4/32  # Replace with your public IP range
+    - name: private-ips
+      protocol: layer2
+      addresses:
+      - 192.168.1.0/24  # Replace with your private IP range
