@@ -2,6 +2,10 @@
 
 #### menggunakan git action untuk automatic push jika ada perubahan di dalam code, simple nodejs, auto push image ke dockerhub, auto deploy ke kubernetes
 
+```
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.8/config/manifests/metallb-native.yaml
+```
+
 #### untuk menjalankan semua file yang ada di folder deployment jalankan perintah di bawah ini. configurasi kustomization.yaml jika perluh
 
 ```

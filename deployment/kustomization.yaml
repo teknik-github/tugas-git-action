@@ -6,5 +6,6 @@ resources:
 - 03-role-binding.yaml
 - 04-traefik-services.yaml
 - 05-traefik.yaml
+- metallb/metal.yaml
 - nodejs-service/ingress.yaml
 - nodejs-service/nodejs-deploymen.yaml
