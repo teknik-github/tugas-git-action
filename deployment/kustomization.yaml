@@ -7,5 +7,6 @@ resources:
 - 04-traefik-services.yaml
 - 05-traefik.yaml
 - metallb/metal.yaml
-- nodejs-service/ingress.yaml
-- nodejs-service/nodejs-deploymen.yaml
+- service/ingress.yaml
+- service/app1/nodejs-deploymen.yaml
+- service/app2/nodejs2-deploymen.yaml

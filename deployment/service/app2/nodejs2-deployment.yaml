@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs2-deployment
+  namespace: app2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs2
+  template:
+    metadata:
+      labels:
+        app: nodejs2
+    spec:
+      containers:
+        - name: nodejs2
+          image: teknikhub/nodejs:latest
+          ports:
+            - containerPort: 3000
+      nodeSelector:
+        node-role.kubernetes.io/worker2: "" 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs2-service
+  namespace: default
+spec:
+  selector:
+    app: nodejs2
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
