@@ -1,6 +1,7 @@
 #### menggunakan git action untuk automatic push jika ada perubahan di dalam code, simple nodejs, auto push image ke dockerhub, auto deploy ke kubernetes
 
-![Alt text]( "a title")
+![Alt text](https://raw.githubusercontent.com/teknik-github/tugas-git-action/refs/heads/main/picture/done.svg "arsitecture")
+
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.8/config/manifests/metallb-native.yaml
